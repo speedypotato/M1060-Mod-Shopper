@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileFilter;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -25,7 +26,12 @@ public class Runner {
 	
 	public static File[] readResources() {
 		File folder = new File(new File("").getAbsolutePath() + "\\resources");
-		File[] files = folder.listFiles();
+		File[] files = folder.listFiles(new FileFilter() {
+			@Override
+			public boolean accept(File file) {
+				return !file.isHidden();
+			}
+		});
 		return files;
 	}
 }
